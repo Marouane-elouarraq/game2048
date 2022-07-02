@@ -3,4 +3,5 @@ from pytest import *
 
 
 def test_create_grid():
-    assert create_grid() == [[' ',' ',' ', ' '],[' ',' ',' ', ' '],[' ',' ',' ', ' '],[' ',' ',' ', ' ']]
+    assert create_grid() == [[' ', ' ', ' ', ' '], [' ', ' ', ' ', ' '], [
+        ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ']]
