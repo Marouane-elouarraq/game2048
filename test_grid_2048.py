@@ -6,4 +6,3 @@ def test_create_grid():
     assert create_grid() == [[' ', ' ', ' ', ' '], [' ', ' ', ' ', ' '], [
         ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ']]
 
-test_create_grid()
