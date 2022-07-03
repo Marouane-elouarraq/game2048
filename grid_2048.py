@@ -126,28 +126,41 @@ def long_value(grid):
     return max(length_grid)
 
 
-def print_line(n):
+def print_line(n, len_grid):
     if n == 1:
-        print(' === === === === ', end='\n')
+        for _ in range(len_grid):
+            print(' ===', end="")
+        print(' ', end="\n")
+#        print(' === === === === ',end='\n')
     elif n == 2:
-        print(' ==== ==== ==== ==== ', end='\n')
+        for _ in range(len_grid):
+            print(' ====', end="")
+        print(' ', end="\n")
+#        print(' ==== ==== ==== ==== ',end='\n')
     elif n == 3:
-        print(' ===== ===== ===== ===== ', end='\n')
+        for _ in range(len_grid):
+            print(' =====', end="")
+        print(' ', end="\n")
+#        print(' ===== ===== ===== ===== ',end='\n')
     elif n == 4:
-        print(' ====== ====== ====== ====== ', end='\n')
+        for _ in range(len_grid):
+            print(' ===', end="")
+        print(' ', end="\n")
+#        print(' ====== ====== ====== ====== ',end='\n')
 
 
 def grid_to_string(grid):
     m = long_value(grid)
     n = len(grid)
     for i in range(n):
-        print_line(m)
+        print_line(m, n)
         for j in range(n):
             ch = str(grid[i][j])
             while (len(ch) < m):
                 ch += ' '
-            print('| '+ch+' ',end="")
-        print ('|',end='\n')
-    print_line(m)
+            print('| '+ch+' ', end="")
+        print('|', end='\n')
+    print_line(m, n)
 
 
+grid_to_string(create_grid(5))
