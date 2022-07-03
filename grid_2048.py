@@ -279,3 +279,23 @@ def random_play():
     else:
         print('you lost')
 
+def game_play():
+    n = int(read_size_grid())
+    grid = init_game(n)
+    render_grid(grid)
+    print(grid_to_string(grid))
+    while (not is_game_over(grid)):
+        mv = read_player_command()
+        if mv == 'g':
+            mv = 'left'
+        elif mv == 'd':
+            mv = 'right'
+        elif mv == 'h':
+            mv = 'up'
+        elif mv == 'b':
+            mv = 'down'
+        elif mv == 'x':
+            break
+        grid = move_grid(grid, mv)
+        grid = grid_add_new_tile(grid)
+        print (grid_to_string(grid))
