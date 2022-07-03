@@ -186,8 +186,9 @@ def move_row_left(row):
 
 
 def move_row_right(row):
-    row.reverse()
-    l = move_row_left(row)
+    alt_row = [x for x in row]
+    alt_row.reverse()
+    l = move_row_left(alt_row)
     l.reverse()
     return l
 
@@ -218,3 +219,32 @@ def move_grid(grid, d):
             new_grid.append(move_row_right(l))
         new_grid = transpose(new_grid)
     return new_grid
+
+
+def is_grid_full(grid):
+    tiles = get_all_tiles(grid)
+    return (not 0 in tiles)
+
+
+def move_possible(grid):
+    mv_possible = []
+    mv_possible.append(move_grid(grid, 'left') != grid)
+    mv_possible.append(move_grid(grid, 'right') != grid)
+    mv_possible.append(move_grid(grid, 'up') != grid)
+    mv_possible.append(move_grid(grid, 'down') != grid)
+#    mv_possible = [move_grid(grid, 'left') != grid, move_grid(grid, 'right') != grid, move_grid(grid, 'up') != grid, move_grid(grid, 'down') != grid]
+    return mv_possible
+
+
+def is_game_over(grid):
+    if move_possible(grid) == [False, False, False, False]:
+        return True
+    else:
+        return False
+
+def is_game_won(grid):
+    tiles = get_all_tiles(grid)
+    for x in tiles:
+        if x > 2048:
+            return True 
+    return False

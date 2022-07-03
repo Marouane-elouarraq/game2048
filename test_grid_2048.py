@@ -56,9 +56,11 @@ def test_init_game():
     assert 2 in tiles or 4 in tiles
     assert len(get_empty_tiles_positions(grid)) == 14
 
+
 def test_grid_to_string():
-    grid = [[' ', ' ', ' ', ' '], [' ', ' ', ' ', ' '], [' ', ' ', ' ', ' '], [2, ' ', ' ', 2]]
-    aa ="""
+    grid = [[' ', ' ', ' ', ' '], [' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' '], [2, ' ', ' ', 2]]
+    aa = """
  === === === ===
 | 0 | 0 | 0 | 0 |
  === === === ===
@@ -69,10 +71,12 @@ def test_grid_to_string():
 | 2 | 0 | 0 | 2 |
  === === === ===
     """
-    assert grid_to_string_(grid, 4) == aa[0:] # on enleve le premier et le dernier retour chariot
+    assert grid_to_string_(
+        grid, 4) == aa[0:]  # on enleve le premier et le dernier retour chariot
+
 
 def test_move_row_left():
-    
+
     assert move_row_left([0, 0, 0, 2]) == [2, 0, 0, 0]
     assert move_row_left([0, 2, 0, 4]) == [2, 4, 0, 0]
     assert move_row_left([2, 2, 0, 4]) == [4, 4, 0, 0]
@@ -83,8 +87,9 @@ def test_move_row_left():
     assert move_row_left([2, 4, 4, 0]) == [2, 8, 0, 0]
     assert move_row_left([4, 8, 16, 32]) == [4, 8, 16, 32]
 
+
 def test_move_row_right():
-    
+
     assert move_row_right([2, 0, 0, 0]) == [0, 0, 0, 2]
     assert move_row_right([0, 2, 0, 4]) == [0, 0, 2, 4]
     assert move_row_right([2, 2, 0, 4]) == [0, 0, 4, 4]
@@ -95,20 +100,41 @@ def test_move_row_right():
     assert move_row_right([2, 4, 4, 0]) == [0, 0, 2, 8]
     assert move_row_right([4, 8, 16, 32]) == [4, 8, 16, 32]
 
+
 def test_move_grid():
-    assert move_grid([[2,0,0,2], [4, 4, 0, 0], [8, 0, 8, 0], [0, 2, 2, 0]],"left") == [[4,0,0,0], [8, 0, 0, 0], [16, 0, 0, 0], [4, 0, 0, 0]]
-    assert move_grid([[2,0,0,2], [4, 4, 0, 0], [8, 0, 8, 0], [0, 2, 2, 0]],"right") == [[0,0,0,4], [0, 0, 0, 8], [0, 0, 0, 16], [0, 0, 0, 4]]
-    assert move_grid([[2,0,0,2], [2, 4, 0, 0], [8, 4, 2, 0], [8, 2, 2, 0]],"up") == [[4,8,4,2], [16, 2, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
-    assert move_grid([[2,0,0,2], [2, 4, 0, 0], [8, 4, 2, 0], [8, 2, 2, 0]],"down") == [[0, 0, 0, 0], [0, 0, 0, 0],[4,8,0,0],[16, 2, 4, 2]]
+    assert move_grid([[2, 0, 0, 2], [4, 4, 0, 0], [8, 0, 8, 0], [0, 2, 2, 0]], "left") == [
+        [4, 0, 0, 0], [8, 0, 0, 0], [16, 0, 0, 0], [4, 0, 0, 0]]
+    assert move_grid([[2, 0, 0, 2], [4, 4, 0, 0], [8, 0, 8, 0], [0, 2, 2, 0]], "right") == [
+        [0, 0, 0, 4], [0, 0, 0, 8], [0, 0, 0, 16], [0, 0, 0, 4]]
+    assert move_grid([[2, 0, 0, 2], [2, 4, 0, 0], [8, 4, 2, 0], [8, 2, 2, 0]], "up") == [
+        [4, 8, 4, 2], [16, 2, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+    assert move_grid([[2, 0, 0, 2], [2, 4, 0, 0], [8, 4, 2, 0], [8, 2, 2, 0]], "down") == [
+        [0, 0, 0, 0], [0, 0, 0, 0], [4, 8, 0, 0], [16, 2, 4, 2]]
+
+
+def test_is_grid_full():
+    assert is_grid_full([[2, 4, 5, 2], [4, 4, 16, 2], [
+                        8, 2, 8, 2], [2, 2, 2, 0]]) == False
+    assert is_grid_full([[2, 4, 5, 2], [4, 4, 16, 2], [
+                        8, 2, 8, 2], [2, 2, 2, 4]]) == True
+
+
+def test_move_possible():
+    assert move_possible([[2, 2, 2, 2], [4, 8, 8, 16], [0, 8, 0, 4], [
+                         4, 8, 16, 32]]) == [True, True, True, True]
+    assert move_possible([[2, 4, 8, 16], [16, 8, 4, 2], [2, 4, 8, 16], [
+                         16, 8, 4, 2]]) == [False, False, False, False]
 
 
 # test_create_grid()
 # test_grid_add_new_tile_at_position()
 # test_get_all_tiles()
 # test_get_empty_tiles_positions()
-#test_get_new_position()
-#test_init_game()
-#test_grid_to_string()
-#test_move_row_left()
-#test_move_row_right()
-test_move_grid()
+# test_get_new_position()
+# test_init_game()
+# test_grid_to_string()
+# test_move_row_left()
+# test_move_row_right()
+# test_move_grid()
+# test_is_grid_full()
+test_move_possible()
