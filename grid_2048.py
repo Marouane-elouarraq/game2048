@@ -1,4 +1,5 @@
 import random as rd
+from textual_2048 import *
 a1 = """
  === === === ===
 |   |   |   |   |
@@ -163,4 +164,57 @@ def grid_to_string(grid):
     print_line(m, n)
 
 
-grid_to_string(create_grid(5))
+def squeez(row):
+    n = len(row)
+    all_values = []
+    for x in row:
+        if x != 0:
+            all_values.append(x)
+    while len(all_values) < n:
+        all_values.append(0)
+    return all_values
+
+
+def move_row_left(row):
+    n = len(row)
+    squeezed_row = squeez(row)
+    for i in range(0, n-1):
+        if squeezed_row[i] == squeezed_row[i+1]:
+            squeezed_row[i] = 2*squeezed_row[i]
+            squeezed_row[i+1] = 0
+    return squeez(squeezed_row)
+
+
+def move_row_right(row):
+    row.reverse()
+    l = move_row_left(row)
+    l.reverse()
+    return l
+
+
+def transpose(grid):
+    n = len(grid)
+    tran_grid = []
+    for i in range(n):
+        t = [l[i] for l in grid]
+        tran_grid.append(t)
+    return tran_grid
+
+
+def move_grid(grid, d):
+    new_grid = []
+    if d == 'left':
+        for l in grid:
+            new_grid.append(move_row_left(l))
+    if d == 'right':
+        for l in grid:
+            new_grid.append(move_row_right(l))
+    if d == 'up':
+        for l in transpose(grid):
+            new_grid.append(move_row_left(l))
+        new_grid = transpose(new_grid)
+    if d == 'down':
+        for l in transpose(grid):
+            new_grid.append(move_row_right(l))
+        new_grid = transpose(new_grid)
+    return new_grid

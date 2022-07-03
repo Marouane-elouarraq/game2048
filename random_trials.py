@@ -66,6 +66,8 @@ def print_grid(grid):
         print ('|',end='\n')
     print_line(m, n)
 
+print(transpose(transpose([[2,0,0,2], [4, 4, 0, 0], [8, 0, 8, 0], [0, 2, 2, 0]])))
+
 
 
 
