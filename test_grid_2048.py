@@ -56,10 +56,25 @@ def test_init_game():
     assert 2 in tiles or 4 in tiles
     assert len(get_empty_tiles_positions(grid)) == 14
 
+def test_grid_to_string():
+    grid = [[' ', ' ', ' ', ' '], [' ', ' ', ' ', ' '], [' ', ' ', ' ', ' '], [2, ' ', ' ', 2]]
+    aa ="""
+ === === === ===
+| 0 | 0 | 0 | 0 |
+ === === === ===
+| 0 | 0 | 0 | 0 |
+ === === === ===
+| 0 | 0 | 0 | 0 |
+ === === === ===
+| 2 | 0 | 0 | 2 |
+ === === === ===
+    """
+    assert grid_to_string_(grid, 4) == aa[0:] # on enleve le premier et le dernier retour chariot
 
 # test_create_grid()
 # test_grid_add_new_tile_at_position()
 # test_get_all_tiles()
 # test_get_empty_tiles_positions()
 #test_get_new_position()
-test_init_game()
+#test_init_game()
+test_grid_to_string()
