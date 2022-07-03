@@ -137,4 +137,5 @@ def test_move_possible():
 # test_move_row_right()
 # test_move_grid()
 # test_is_grid_full()
-test_move_possible()
+#test_move_possible()
+random_play()

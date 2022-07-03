@@ -24,6 +24,8 @@ a2 = """
     """
 dict_a = {1: a1, 2: a2}
 
+mouvement = ['left', 'right', 'up', 'down']
+
 
 def create_grid(n=4):
     s = []
@@ -236,15 +238,44 @@ def move_possible(grid):
     return mv_possible
 
 
+def mvt_possible(grid):
+    mv_possible = []
+    n = len(grid)
+    bool_possible = move_possible(grid)
+    for i in range(n):
+        if bool_possible[i]:
+            mv_possible.append(mouvement[i])
+    return mv_possible
+
+
 def is_game_over(grid):
     if move_possible(grid) == [False, False, False, False]:
         return True
     else:
         return False
 
+
 def is_game_won(grid):
+    render_grid(grid)
     tiles = get_all_tiles(grid)
     for x in tiles:
         if x > 2048:
-            return True 
+            return True
     return False
+
+
+def random_play():
+    grid = init_game()
+    render_grid(grid)
+    print(grid_to_string(grid))
+    while (not is_game_over(grid)):
+
+        mv = rd.choice(mvt_possible(grid))
+        grid = move_grid(grid, mv)
+        grid = grid_add_new_tile(grid)
+        print (grid_to_string(grid))
+    if is_game_won(grid):
+        print('you won')
+    else:
+        print('you lost')
+

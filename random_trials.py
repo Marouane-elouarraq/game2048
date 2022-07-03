@@ -66,7 +66,8 @@ def print_grid(grid):
         print ('|',end='\n')
     print_line(m, n)
 
-
+render_grid(grid)
+print(grid_to_string(grid))
 
 
 
