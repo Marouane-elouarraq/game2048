@@ -273,11 +273,12 @@ def random_play():
         mv = rd.choice(mvt_possible(grid))
         grid = move_grid(grid, mv)
         grid = grid_add_new_tile(grid)
-        print (grid_to_string(grid))
+        print(grid_to_string(grid))
     if is_game_won(grid):
         print('you won')
     else:
         print('you lost')
+
 
 def game_play():
     n = int(read_size_grid())
@@ -298,4 +299,4 @@ def game_play():
             break
         grid = move_grid(grid, mv)
         grid = grid_add_new_tile(grid)
-        print (grid_to_string(grid))
+        print(grid_to_string(grid))
